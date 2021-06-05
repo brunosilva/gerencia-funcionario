@@ -137,7 +137,7 @@ export default function Funcionario() {
         dependentes: row.dependentes,
         salarioBaseIR: row.salario - row.desconto - (deducaoDependente * row.dependentes),
         descontoirrf: calculaDescontoIRRF(row.salario - row.desconto - (deducaoDependente * row.dependentes))
-    }))658,24
+    }))
 
     return (
         <section className={style.container}>
