@@ -9,7 +9,6 @@ import {
 
 import style from './style.module.scss';
 
-
 const customStyles = {
     content: {
         width: '50%',
@@ -22,7 +21,6 @@ const customStyles = {
     }
 };
 
-
 export default function NovoFuncionario() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [form] = Form.useForm();
@@ -33,6 +31,11 @@ export default function NovoFuncionario() {
 
     function closeModal() {
         setIsOpen(false);
+    }
+
+    function handleFormSubmit(a: any) {
+        console.log(a);
+        localStorage.setItem('@gerencia-funcionario:funcionario', JSON.stringify(a));
     }
 
     return (
@@ -47,33 +50,49 @@ export default function NovoFuncionario() {
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
-                    
+                    ariaHideApp={false}
                 >
 
                     <CloseOutlined style={{ float: 'right' }} onClick={closeModal} />
                     <Form
                         layout="vertical"
+                        onFinish={handleFormSubmit}
                         form={form}>
                         <h1>Cadastrar Funcionário</h1>
                         <Divider />
-                        <Row className={style.rowInput}>
-                            <Input type="text" placeholder="Nome" />
-                        </Row>
-                        <Row className={style.rowInput}>
-                            <Input type="number" placeholder="CPF" />
-                        </Row>
-                        <Row className={style.rowInput}>
-                            <Input type="number" placeholder="Salário" />
-                        </Row>
-                        <Row className={style.rowInput}>
-                            <Input type="number" placeholder="Desconto" />
-                        </Row>
-                        <Row className={style.rowInput}>
-                            <Input type="number" placeholder="Dependentes" />
-                        </Row>
+                        <Form.Item
+                            name={['nome']}
+                            label="Nome"
+                        >
+                            <Input type="text" placeholder="Nome" required />
+                        </Form.Item>
+                        <Form.Item
+                            name={['cpf']}
+                            label="CPF"
+                        >
+                            <Input type="number" placeholder="CPF" required />
+                        </Form.Item>
+                        <Form.Item
+                            name={['salario']}
+                            label="Salário"
+                        >
+                            <Input type="number" placeholder="Salário Bruto" required />
+                        </Form.Item>
+                        <Form.Item
+                            name={['desconto']}
+                            label="Desconto"
+                        >
+                            <Input type="number" placeholder="Desconto" required />
+                        </Form.Item>
+                        <Form.Item
+                            name={['dependentes']}
+                            label="Dependentes"
+                        >
+                            <Input type="number" placeholder="Dependentes" required />
+                        </Form.Item>
 
                         <Divider />
-                        <Button style={{ float: 'right' }} type="primary" data-testid="edit-user-button">
+                        <Button style={{ float: 'right' }} htmlType="submit" type="primary" data-testid="edit-user-button">
                             <div className="text">Salvar</div>
                         </Button>
                     </Form>

@@ -17,15 +17,6 @@ interface FuncionarioProps {
     descontoirrf: number;
 }
 
-interface NovoFuncionarioProps {
-    id: number;
-    nome: string;
-    cpf: number;
-    salario: number;
-    desconto: number;
-    dependentes: number;
-}
-
 export default function Funcionario() {
     const [funcionarios, setFuncionarios] = useState<FuncionarioProps[]>([]);
     var deducaoDependente = 164.56;
