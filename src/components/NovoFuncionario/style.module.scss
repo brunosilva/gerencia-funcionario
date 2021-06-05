@@ -1,6 +1,9 @@
 .novoFuncionario{
     width: 100% !important;
 
+    .modalForm{
+        z-index: 99999 !important;
+    }
     .botaoAbrirModal{
         width: 100% !important;
         display: flex;

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 
-import { Row, Button, Form, Divider, Input } from 'antd';
+import { Row, Button, Form, Divider, Input, Col } from 'antd';
 import {
     PlusOutlined,
     CloseOutlined
 } from '@ant-design/icons';
 
 import style from './style.module.scss';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const customStyles = {
     content: {
@@ -34,8 +36,18 @@ export default function NovoFuncionario() {
     }
 
     function handleFormSubmit(a: any) {
-        console.log(a);
-        localStorage.setItem('@gerencia-funcionario:funcionario', JSON.stringify(a));
+        try{
+            if(a == null || a == undefined){
+                throw new Error();
+            }
+            localStorage.setItem('@gerencia-funcionario:funcionario', JSON.stringify(a));
+            closeModal();
+            toast.success('Cadastro realizado com sucesso.');
+            return;
+        } catch {
+            toast.error('Obrigatório preencher todos os campos');
+            return;
+        }
     }
 
     return (
@@ -60,36 +72,51 @@ export default function NovoFuncionario() {
                         form={form}>
                         <h1>Cadastrar Funcionário</h1>
                         <Divider />
-                        <Form.Item
-                            name={['nome']}
-                            label="Nome"
-                        >
-                            <Input type="text" placeholder="Nome" required />
-                        </Form.Item>
-                        <Form.Item
-                            name={['cpf']}
-                            label="CPF"
-                        >
-                            <Input type="number" placeholder="CPF" required />
-                        </Form.Item>
-                        <Form.Item
-                            name={['salario']}
-                            label="Salário"
-                        >
-                            <Input type="number" placeholder="Salário Bruto" required />
-                        </Form.Item>
-                        <Form.Item
-                            name={['desconto']}
-                            label="Desconto"
-                        >
-                            <Input type="number" placeholder="Desconto" required />
-                        </Form.Item>
-                        <Form.Item
-                            name={['dependentes']}
-                            label="Dependentes"
-                        >
-                            <Input type="number" placeholder="Dependentes" required />
-                        </Form.Item>
+                        <Row gutter={10}>
+                            <Col span={12}>
+                                <Form.Item
+                                    name={['nome']}
+                                    label="Nome"
+                                >
+                                    <Input type="text" placeholder="Nome" required />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item
+                                    name={['cpf']}
+                                    label="CPF"
+                                >
+                                    <Input type="number" placeholder="CPF" required />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row gutter={10}>
+                            <Col span={8}>
+                                <Form.Item
+                                    name={['salario']}
+                                    label="Salário"
+                                >
+                                    <Input type="number" placeholder="Salário Bruto" required />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8}>
+                                <Form.Item
+                                    name={['desconto']}
+                                    label="Desconto"
+                                >
+                                    <Input type="number" placeholder="Desconto" required />
+                                </Form.Item>
+                            </Col>
+                            <Col span={8}>
+                                <Form.Item
+                                    name={['dependentes']}
+                                    label="Dependentes"
+                                >
+                                    <Input type="number" placeholder="Dependentes" required />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        
 
                         <Divider />
                         <Button style={{ float: 'right' }} htmlType="submit" type="primary" data-testid="edit-user-button">

@@ -6,6 +6,7 @@ import { api } from '../../services/api';
 
 import style from './style.module.scss';
 import NovoFuncionario from '../NovoFuncionario';
+import { toast } from 'react-toastify';
 
 interface FuncionarioProps {
     id: number;
@@ -60,9 +61,10 @@ export default function Funcionario() {
 
     // Remova um Funcionário da listagem pelo ID
     function handleRemoverFuncionario(id: number) {
-
         const filtroFuncionario = funcionarios.filter(funcionario => funcionario.id !== id);
         setFuncionarios(filtroFuncionario);
+        toast.success('Funcionário excluido com sucesso')
+        return;
     }
 
     // Colunas da Tabela de Funcionários
