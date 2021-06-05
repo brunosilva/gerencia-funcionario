@@ -1,0 +1,23 @@
+.container{
+    .rowTitle{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .tabelaFuncionario{
+        width:100% !important;
+
+        .table{
+            width: 100% !important;
+
+            .colBotoes{
+                button{
+                    &:first-child{
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

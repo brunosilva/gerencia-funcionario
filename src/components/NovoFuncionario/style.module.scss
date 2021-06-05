@@ -1,0 +1,15 @@
+.novoFuncionario{
+    width: 100% !important;
+
+    .botaoAbrirModal{
+        width: 100% !important;
+        display: flex;
+        justify-content: flex-end;
+        
+        margin: 1.5rem 0;
+    }
+
+    .rowInput{
+        margin-bottom: 1rem !important;
+    }
+}
