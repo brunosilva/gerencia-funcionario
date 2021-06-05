@@ -15,6 +15,7 @@ interface FuncionarioProps {
     desconto: number;
     dependentes: number;
     descontoirrf: number;
+    salarioBaseIR: number;
 }
 
 interface NovoFuncionarioProps {
@@ -36,25 +37,28 @@ export default function Funcionario() {
         });
     }, []);
 
-    // Calcula valor do Desconto IRRF
-    // function calculaDescontoIRRF(id: number) {
-    //     funcionarios.map((e) => e.id === id){
-    //         const salarioBaseIR = e.salario - e.desconto - (deducaoDependente * e.dependentes);
-    //         var descontoirrf;
 
-    //         if(salarioBaseIR < 1903.98){
-    //             descontoirrf = 0;
-    //         } else if(salarioBaseIR >= 1903.99 && salarioBaseIR <= 2826.65){
-    //             descontoirrf = (salarioBaseIR * 7.5) - 142.80;
-    //         } else if(salarioBaseIR >= 2826.66 && salarioBaseIR <= 3751.05){
-    //             descontoirrf = (salarioBaseIR * 15) - 354.80;
-    //         } else if(salarioBaseIR >= 3751.06 && salarioBaseIR <= 4664.68){
-    //             descontoirrf = (salarioBaseIR * 22.5) - 636.13;
-    //         } else if (salarioBaseIR > 4664.68){
-    //             descontoirrf = (salarioBaseIR * 27.5) - 869.36;
-    //         }
-    //     });
-    // }
+    // Calcula valor do Desconto IRRF
+    function calculaDescontoIRRF(salarioBaseIR: number) {
+        if(salarioBaseIR < 1903.98){
+            return 0;
+        } else if(salarioBaseIR >= 1903.99 && salarioBaseIR <= 2826.65){
+            return (salarioBaseIR * 7.5) - 142.80;
+        } else if(salarioBaseIR >= 2826.66 && salarioBaseIR <= 3751.05){
+            return (salarioBaseIR * 15) - 354.80;
+        } else if(salarioBaseIR >= 3751.06 && salarioBaseIR <= 4664.68){
+            return (salarioBaseIR * 22.5) - 636.13;
+        } else if (salarioBaseIR > 4664.68){
+            return (salarioBaseIR * 27.5) - 869.36;
+        }
+    }
+
+
+    // var descontoirrf;
+
+
+
+
 
     // console.log(calculaDescontoIRRF(1));
 
@@ -130,9 +134,10 @@ export default function Funcionario() {
             style: 'currency',
             currency: 'BRL'
         }).format(row.desconto),
-        dependentes: row.dependentes
-
-    }))
+        dependentes: row.dependentes,
+        salarioBaseIR: row.salario - row.desconto - (deducaoDependente * row.dependentes),
+        descontoirrf: calculaDescontoIRRF(row.salario - row.desconto - (deducaoDependente * row.dependentes))
+    }))658,24
 
     return (
         <section className={style.container}>
