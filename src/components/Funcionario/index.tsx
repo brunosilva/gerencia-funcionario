@@ -15,7 +15,6 @@ interface FuncionarioProps {
     desconto: number;
     dependentes: number;
     descontoirrf: number;
-    salarioBaseIR: number;
 }
 
 interface NovoFuncionarioProps {
@@ -37,34 +36,36 @@ export default function Funcionario() {
         });
     }, []);
 
+    // Função que Formata o resultado em valor monetario padrão pt-BR
+    function formataValorMonetario(salarioBase: number, aliquota: number, parcelaDeduzir: number){
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format((salarioBase * aliquota) - parcelaDeduzir)
+    }
 
     // Calcula valor do Desconto IRRF
     function calculaDescontoIRRF(salarioBaseIR: number) {
         if(salarioBaseIR < 1903.98){
-            return 0;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(0);
+
         } else if(salarioBaseIR >= 1903.99 && salarioBaseIR <= 2826.65){
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format((salarioBaseIR * 0.075) - 142.80)
+            return formataValorMonetario(salarioBaseIR, 0.075, 142.80);
+
         } else if(salarioBaseIR >= 2826.66 && salarioBaseIR <= 3751.05){
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format((salarioBaseIR * 0.150) - 354.80)
+            return formataValorMonetario(salarioBaseIR, 0.150, 354.80);
+
         } else if(salarioBaseIR >= 3751.06 && salarioBaseIR <= 4664.68){
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format((salarioBaseIR * 0.225) - 636.13)
+            return formataValorMonetario(salarioBaseIR, 0.225, 636.13);
+
         } else if (salarioBaseIR > 4664.68){
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format((salarioBaseIR * 0.275) - 869.36)
+            return formataValorMonetario(salarioBaseIR, 0.275, 869.36);
+
         }
     }
-
 
     // Remova um Funcionário da listagem pelo ID
     function handleRemoverFuncionario(id: number) {
@@ -73,6 +74,7 @@ export default function Funcionario() {
         setFuncionarios(filtroFuncionario);
     }
 
+    // Colunas da Tabela de Funcionários
     const columns = [
         {
             title: 'Id',
@@ -126,6 +128,7 @@ export default function Funcionario() {
         }
     ];
 
+    // Inserindo informações nas colunas da tabela
     const data = funcionarios.map(row => ({
         id: row.id,
         nome: row.nome,
@@ -139,7 +142,6 @@ export default function Funcionario() {
             currency: 'BRL'
         }).format(row.desconto),
         dependentes: row.dependentes,
-        salarioBaseIR: row.salario - row.desconto - (deducaoDependente * row.dependentes),
         descontoirrf: calculaDescontoIRRF(row.salario - row.desconto - (deducaoDependente * row.dependentes))
     }))
 
