@@ -43,24 +43,28 @@ export default function Funcionario() {
         if(salarioBaseIR < 1903.98){
             return 0;
         } else if(salarioBaseIR >= 1903.99 && salarioBaseIR <= 2826.65){
-            return (salarioBaseIR * 7.5) - 142.80;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format((salarioBaseIR * 0.075) - 142.80)
         } else if(salarioBaseIR >= 2826.66 && salarioBaseIR <= 3751.05){
-            return (salarioBaseIR * 15) - 354.80;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format((salarioBaseIR * 0.150) - 354.80)
         } else if(salarioBaseIR >= 3751.06 && salarioBaseIR <= 4664.68){
-            return (salarioBaseIR * 22.5) - 636.13;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format((salarioBaseIR * 0.225) - 636.13)
         } else if (salarioBaseIR > 4664.68){
-            return (salarioBaseIR * 27.5) - 869.36;
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format((salarioBaseIR * 0.275) - 869.36)
         }
     }
 
-
-    // var descontoirrf;
-
-
-
-
-
-    // console.log(calculaDescontoIRRF(1));
 
     // Remova um Funcionário da listagem pelo ID
     function handleRemoverFuncionario(id: number) {
