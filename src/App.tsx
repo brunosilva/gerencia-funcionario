@@ -14,7 +14,7 @@ export default function App() {
           <div className="logo" />
         </Row>
         <Row className="title">
-          <h2>Registrar Funcionario</h2><h2>Tabelas e Cálculos do IRRF</h2>
+          <h1>Cálculo IRPF do funcionário</h1>
         </Row>
       </Header>
       <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>

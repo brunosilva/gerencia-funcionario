@@ -35,9 +35,10 @@
             display: flex;
             justify-content: center;
             
-            h2{
+            h1{
                 color: var(--gray-6);
                 margin: 0 1rem;
+                font-size: 1.5rem;
 
                 &:first-child{
                     &::after{

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Row, Table, Button, Col } from 'antd';
+import { Row, Table, Button, Col, Popover } from 'antd';
 
 import { api } from '../../services/api';
 
@@ -16,7 +16,14 @@ interface FuncionarioProps {
     desconto: number;
     dependentes: number;
     descontoirrf: number;
+    dadosLocalStorage: [];
 }
+
+const content = (
+    <div>
+        <img src="./tabelaIRRF.png" />
+    </div>
+);
 
 export default function Funcionario() {
     const [funcionarios, setFuncionarios] = useState<FuncionarioProps[]>([]);
@@ -24,6 +31,11 @@ export default function Funcionario() {
 
     useEffect(() => {
         api.get<FuncionarioProps[]>(`/pessoas`).then(response => {
+            // const dadosLocalStorage = localStorage.getItem('@gerencia-funcionario:funcionario');
+            // const todosFuncionarios = {
+            //     ...funcionarios,
+            //     dadosLocalStorage
+            // }
             setFuncionarios(response.data);
         });
     }, []);
@@ -144,7 +156,13 @@ export default function Funcionario() {
                 <h1>Tabelas e cálculos de IRRF</h1>
             </Row>
             <Row className={style.mensagem}>
-                text
+                <p>A tabela de IR é um dos principais instrumentos para auxiliar os contribuintes na hora de enviar as informações fiscais para a Receita. Afinal, é nesse documento que consta as alíquotas do Imposto de Renda.</p>
+                <p>Isso quer dizer que é essa a fonte para você saber qual é o percentual que deve ser aplicado sobre os seus rendimentos. Portanto, na hora de fazer o cálculo e declarar seus rendimentos, ter essa tabela é fundamental para que você não envie nenhum dado errado e, consequentemente, não caia na malha fina.</p>
+                <p>Veja a Tabela progressiva do IRRF que deve ser utilizada.
+                <Popover className={style.popover} content={content} trigger="hover">
+                    <Button>aqui</Button>
+                </Popover>
+                </p>
             </Row>
             <Row className={style.tabelaFuncionario}>
                 <NovoFuncionario />

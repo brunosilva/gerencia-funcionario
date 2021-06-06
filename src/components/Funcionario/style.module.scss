@@ -2,7 +2,23 @@
     .rowTitle{
         display: flex;
         justify-content: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+
+        h1{
+            font-size:1.5rem;
+        }
+    }
+
+    .mensagem{
+        width:85%;
+        margin: 0 auto;
+        font-size:1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+
+        .popover{
+            margin-left: 0.450rem;
+        }
     }
 
     .tabelaFuncionario{

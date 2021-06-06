@@ -36,10 +36,14 @@ export default function NovoFuncionario() {
     }
 
     function handleFormSubmit(a: any) {
+        const min = 10;
+        const max = 100;
+
         try{
             if(a == null || a == undefined){
                 throw new Error();
             }
+            a.id = Math.floor(Math.random() * (max - min) + min);
             localStorage.setItem('@gerencia-funcionario:funcionario', JSON.stringify(a));
             closeModal();
             toast.success('Cadastro realizado com sucesso.');
