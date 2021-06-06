@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 
 import { Row, Table, Button, Col, Popover } from 'antd';
 
@@ -7,6 +8,7 @@ import { api } from '../../services/api';
 import style from './style.module.scss';
 import NovoFuncionario from '../NovoFuncionario';
 import { toast } from 'react-toastify';
+import EditarFuncionario from '../EditarFuncionario';
 
 interface FuncionarioProps {
     id: number;
@@ -19,18 +21,50 @@ interface FuncionarioProps {
     dadosLocalStorage: [];
 }
 
+interface EditarFuncionarioProps {
+    id: () => void;
+}
+
 const content = (
     <div>
         <img src="./tabelaIRRF.png" />
     </div>
 );
 
+const customStyles = {
+    content: {
+        width: '50%',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
 export default function Funcionario() {
     const [funcionarios, setFuncionarios] = useState<FuncionarioProps[]>([]);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [editarFuncionario, setEditarFuncionario] = useState<EditarFuncionarioProps>()
     var deducaoDependente = 164.56;
+
+    const estadoEditar = {
+        editarFuncionario,
+        setEditarFuncionario
+    }
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     useEffect(() => {
         api.get<FuncionarioProps[]>(`/pessoas`).then(response => {
+            // Recuperar dados do localStorage
             // const dadosLocalStorage = localStorage.getItem('@gerencia-funcionario:funcionario');
             // const todosFuncionarios = {
             //     ...funcionarios,
@@ -79,6 +113,13 @@ export default function Funcionario() {
         return;
     }
 
+    // Abrir modal Editar Funcionário
+    function handleOpenModalEditarFuncionario(id: number){
+        console.log("open modal " + id);
+        setEditarFuncionario(id);
+        openModal();
+    }
+
     // Colunas da Tabela de Funcionários
     const columns = [
         {
@@ -122,7 +163,7 @@ export default function Funcionario() {
             key: 'acoes',
             render: (text: any, record: any) => (
                 <Col className={style.colBotoes}>
-                    <Button type='primary' onClick={() => console.log(record)}>
+                    <Button type='primary' onClick={() => handleOpenModalEditarFuncionario(record.id)}>
                         {"Editar"}
                     </Button>
                     <Button type="primary" danger onClick={() => handleRemoverFuncionario(record.id)}>
@@ -167,6 +208,17 @@ export default function Funcionario() {
             <Row className={style.tabelaFuncionario}>
                 <NovoFuncionario />
                 <Table className={style.table} columns={columns} dataSource={data} size="middle" />
+            </Row>
+
+            <Row>
+                <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        style={customStyles}
+                        ariaHideApp={false}
+                    >
+                        <EditarFuncionario onOpenNewTransactionModal={openModal} />
+                </Modal>
             </Row>
         </section>
     )
