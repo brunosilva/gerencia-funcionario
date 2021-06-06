@@ -21,10 +21,6 @@ interface FuncionarioProps {
     dadosLocalStorage: [];
 }
 
-interface EditarFuncionarioProps {
-    id: () => void;
-}
-
 const content = (
     <div>
         <img src="./tabelaIRRF.png" />
@@ -46,7 +42,7 @@ const customStyles = {
 export default function Funcionario() {
     const [funcionarios, setFuncionarios] = useState<FuncionarioProps[]>([]);
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [editarFuncionario, setEditarFuncionario] = useState<EditarFuncionarioProps>()
+    const [editarFuncionario, setEditarFuncionario] = useState(0)
     var deducaoDependente = 164.56;
 
     const estadoEditar = {
