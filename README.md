@@ -69,6 +69,10 @@ Dentro da *function* `calculaDescontoIRRF` é chamado uma nova *function* `forma
 
 * Em seu *VSCODE*, abra duas abas do terminal.
 
+IMPORTANTE: Assim que abrir o terminal execute `npm install` para instalar todas as dependências necessárias para funcionamento do projeto.
+
+Após,
+
 [1°] - Na primeira aba rode o server para disponibilizar os dados: `npm run server`
 
 [2°] - Na segunda aba suba a aplicação `npm run start`
