@@ -40,7 +40,7 @@ E também além dessas colunas, temos uma última coluna com botões ***Editar**
 
 ***Excluir*** - Exclui o funcionário da tabela - Funcionamento OK
 
-
+![tabela-calculo-irrf](https://user-images.githubusercontent.com/17436856/121071245-140fa400-c7a6-11eb-8ebd-af9ad6b6111e.png)
 
 ## Calculo Desconto IRRF
 
