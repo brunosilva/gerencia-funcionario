@@ -54,6 +54,9 @@ E também além dessas colunas, temos uma última coluna com botões ***Editar**
 ### Modal com Dados nos inputs
 ![form-com-dados](https://user-images.githubusercontent.com/17436856/121072427-95b40180-c7a7-11eb-8b97-6659a7e34481.png)
 
+### Tabela sem dados
+![tabela-sem-dados](https://user-images.githubusercontent.com/17436856/121072795-08bd7800-c7a8-11eb-98bf-ed4066a95405.png)
+
 
 ## Calculo Desconto IRRF
 
