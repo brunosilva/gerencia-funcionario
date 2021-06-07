@@ -40,7 +40,20 @@ E também além dessas colunas, temos uma última coluna com botões ***Editar**
 
 ***Excluir*** - Exclui o funcionário da tabela - Funcionamento OK
 
+## Exemplo das Tabelas
+
+### Telas principal
 ![tabela-calculo-irrf](https://user-images.githubusercontent.com/17436856/121071245-140fa400-c7a6-11eb-8ebd-af9ad6b6111e.png)
+
+### Tela de popup avisando funcionário excluido
+![popup-aviso-funcionario-excluido](https://user-images.githubusercontent.com/17436856/121072056-1aeae680-c7a7-11eb-8700-b7413e8101d5.png)
+
+### Modal de Cadastrar Funcionário
+![modal-cadastrar-funcionario](https://user-images.githubusercontent.com/17436856/121072272-5c7b9180-c7a7-11eb-86e5-6ba6ed7e8e24.png)
+
+### Modal com Dados nos inputs
+![form-com-dados](https://user-images.githubusercontent.com/17436856/121072427-95b40180-c7a7-11eb-8b97-6659a7e34481.png)
+
 
 ## Calculo Desconto IRRF
 
