@@ -65,6 +65,11 @@ Ao realizar o map() dos funcionários, no campo `descontoirrf` faço chamada de 
 Dentro da *function* `calculaDescontoIRRF` é chamado uma nova *function* `formataValorMonetario` para formatar o valor que será retornado com tipo *currency: 'BRL'* 
 
 
+## Modal de Editar Funcionário
+
+O código está dentro do componente *Funcionário*. Estudando e entendendo para enviar dados para um novo componente.
+
+
 ## Executar o projeto
 
 * Em seu *VSCODE*, abra duas abas do terminal.
