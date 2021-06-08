@@ -67,8 +67,7 @@ Dentro da *function* `calculaDescontoIRRF` é chamado uma nova *function* `forma
 
 ## Modal de Editar Funcionário
 
-O código está dentro do componente *Funcionário*. Estudando e entendendo para enviar dados para um novo componente.
-
+O código está dentro do componente *Funcionário*. Estudando e entendendo para enviar dados e separar este modal em um novo componente.
 
 ## Executar o projeto
 
